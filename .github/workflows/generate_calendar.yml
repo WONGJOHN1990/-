@@ -25,7 +25,7 @@ jobs:
         run: python generate_calendar.py
 
       - name: Upload calendar
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: lunar_calendar
           path: lunar_calendar.ics
