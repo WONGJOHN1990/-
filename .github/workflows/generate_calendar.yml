@@ -19,13 +19,13 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install chinese-calendar ics
+        run: pip install -i https://pypi.tuna.tsinghua.edu.cn/simple chinese-calendar ics
 
       - name: Generate calendar
         run: python generate_calendar.py
 
       - name: Upload calendar
-        uses: actions/upload-artifact@v3.1.2
+        uses: https://ghproxy.com/https://github.com/actions/upload-artifact@v3.1.2
         with:
           name: lunar_calendar
           path: lunar_calendar.ics
