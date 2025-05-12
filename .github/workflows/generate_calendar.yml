@@ -1,1 +1,31 @@
+name: Generate Lunar Calendar
 
+on:
+  schedule:
+    - cron: '0 0 1 1 *' # 每年1月1日运行
+  workflow_dispatch: # 手动触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install chinese-calendar ics
+
+      - name: Generate calendar
+        run: python generate_calendar.py
+
+      - name: Upload calendar
+        uses: actions/upload-artifact@v3
+        with:
+          name: lunar_calendar
+          path: lunar_calendar.ics
